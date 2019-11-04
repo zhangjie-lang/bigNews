@@ -80,17 +80,18 @@
         下一篇： <a href="#">世界第一个可以玩游戏的马桶、世界上第一个可以玩游戏的茶杯</a>
       </div>
 
-      <form action="" class="comment_form">
+      <form action="" class="comment_form" id="comment">
         <div class="form_group">
           <label>用户名：</label>
-          <input type="text" placeholder="请输入用户名" class="comment_name">
+          <input type="text" placeholder="请输入用户名" class="comment_name" name="author">
         </div>
         <div class="form_group">
           <label>评论内容：</label>
-          <textarea placeholder="请发表您的评论" class="comment_input"></textarea>
+          <textarea placeholder="请发表您的评论" class="comment_input" name='content'></textarea>
         </div>
         <div class="form_group">
           <input type="submit" name="" value="评 论" class="comment_sub"></div>
+        <input type="hidden" name="articleId" id="hid">
       </form>
 
       <div class="comment_count">
@@ -212,6 +213,34 @@
   <!-- 文章页面的 js 代码  -->
   <script>
 
+    var id = getUrlParams('id')
+    // 获取 url 参数
+    function getUrlParams(name) {
+      var params = location.search.substr(1).split('&')
+      for (var i = 0; i < params.length; i++) {
+        var temp = params[i].split('=')
+        if (temp[0] == name) {
+          return temp[1]
+        }
+      }
+      return -1
+    }
+    if (id !== -1) {
+      $('#hid').val(id)
+      $('#comment').on('submit', function () {
+        var formData = $(this).serialize()
+        console.log(formData);
+        $.ajax({
+          type: "post",
+          url: 'http://47.111.184.55:8888/api/v1/index/post_comment',
+          data: formData,
+          success: function (data) {
+            location.reload()
+          }
+        })
+        return false
+      })
+    }
   </script>
 </body>
 
