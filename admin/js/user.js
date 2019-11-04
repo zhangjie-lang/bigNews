@@ -30,7 +30,10 @@ $('#userBox').on('submit', '#userForm', function () {
         alert('修改成功')
         location.href='/index.html'
           
-        }
+      },
+      error: function () {
+        alert('修改失败')
+      }
     })
     return false
 });
