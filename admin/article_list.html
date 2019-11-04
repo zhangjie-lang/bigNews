@@ -270,6 +270,7 @@
   <script src="js/jquery-1.12.4.min.js"></script>
   <script src="./js/template-web.js"></script>
   <script src="./js/jquery.twbsPagination.js"></script>
+  <!-- <script src="./js/articleList.js"></script> -->
   <script>
     // 设置左侧菜单
     $('#release_btn').click(function () {
@@ -279,7 +280,20 @@
 
   <!-- 业务逻辑代码 -->
   <script>
-
+    
+    $(function () {
+    // 文章列表页面
+    // 获取后台文章数据
+    $.ajax({
+        type: 'get',
+        url: 'http://47.111.184.55:8888/api/v1//admin/user/detail',
+        success: function (data) {
+            console.log(data);
+            
+        }
+    })
+    
+})
   </script>
 
 </body>

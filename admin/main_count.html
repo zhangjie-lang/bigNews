@@ -14,31 +14,7 @@
 
 <body>
   <div class="container-fluid">
-    <div class="row spannel_list">
-      <div class="col-sm-3 col-xs-6">
-        <div class="spannel">
-          <em>10015</em><span>篇</span>
-          <b>总文章数</b>
-        </div>
-      </div>
-      <div class="col-sm-3 col-xs-6">
-        <div class="spannel scolor01">
-          <em>123</em><span>篇</span>
-          <b>日新增文章数</b>
-        </div>
-      </div>
-      <div class="col-sm-3 col-xs-6">
-        <div class="spannel scolor02">
-          <em>35</em><span>条</span>
-          <b>评论总数</b>
-        </div>
-      </div>
-      <div class="col-sm-3 col-xs-6">
-        <div class="spannel scolor03">
-          <em>123</em><span>条</span>
-          <b>日新增评论数</b>
-        </div>
-      </div>
+    <div class="row spannel_list" id="paraCou">
     </div>
   </div>
 
@@ -59,6 +35,38 @@
 
   <script src="js/jquery-1.12.4.min.js"></script>
   <script type="text/javascript" src="js/echarts.min.js"></script>
+  <script src="./js/template-web.js"></script>
+  <script src="./js/index.js"></script> 
+
+    <!-- 文章数量模板 -->
+    <script type="text/html" id="paraCount">
+      <div class="col-sm-3 col-xs-6">
+        <div class="spannel">
+          <em>{{data.totalArticle}}</em><span>篇</span>
+          <b>总文章数</b>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="spannel scolor01">
+          <em>{{data.dayArticle}}</em><span>篇</span>
+          <b>日新增文章数</b>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="spannel scolor02">
+          <em>{{data.totalComment}}</em><span>条</span>
+          <b>评论总数</b>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="spannel scolor03">
+          <em>{{data.dayComment}}</em><span>条</span>
+          <b>日新增评论数</b>
+        </div>
+      </div>
+    </script>
+
+    <!-- 月新增文章数模板 -->
   <script>
     var oChart = echarts.init(document.getElementById('curve_show'));
     //页面一进来就发送ajax请求,获取真实的月新增文章数
