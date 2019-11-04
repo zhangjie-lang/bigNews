@@ -42,7 +42,8 @@
           <label for="inputPassword3" class="col-sm-2 control-label">用户图标：</label>
           <div class="col-sm-10">
             <img src="images/2.jpg" alt="" class="user_pic">
-            <input style="display: none" name="userPic" type="file" id="exampleInputFile">
+            <input style="display: none" name="user-Pic" type="file" id="exampleInputFile">
+            <input type="hidden" name="user_pic">
             <!-- 给label标签的for属性赋值,值是input标签的id,那这样的话点击label就相当于点击了input -->
             <br>
             <label for="exampleInputFile">
@@ -68,12 +69,59 @@
     </div>
   </div>
 
-
   <script src="js/jquery-1.12.4.min.js"></script>
-
+  <script src="../js/jquery-1.12.4.min.js"></script>
+  <script src="../js/template-web.js"></script>
   <!-- 业务逻辑代码 -->
   <script>
+    $(function () {
+      // 获取用户详情
+      $.ajax({
+        url: 'http://47.111.184.55:8888/api/v1/admin/user/detail',
+        type: 'get',
+        success: function (response) {
+          if(response.msg == '发布成功') {
+          // console.log(1);
+          $('.username').val(response.username);
+          $('.nickname').val(response.nickname);
+          $('.email').val(response.email);
+          $('.user_pic').prop('src', response.userPic);
+          $('#user_pic').val(response.userPic);
+          $('.password').val(response.password);
+        }
+        }
+      });
 
+      // 修改用户详情
+      $('#article_form').on('submit', function (e) {
+        e.preventDefault();
+        var formDate = $(this).serialize();
+        $.ajax({
+        url: 'http://47.111.184.55:8888/api/v1/admin/user/edit',
+        type: 'post',
+        data: formDate,
+        success: function (response) {
+         if(response.msg == '修改成功') {
+           location.reload()
+         } 
+        },
+        error: function () {
+          alert('修改失败')
+        }
+      });
+      }) 
+      
+      // 获取用户信息
+      // $.ajax({
+      //   url: 'http://47.111.184.55:8888/api/v1/admin/user/info',
+      //   type: 'get',
+      //   success: function (response) {
+      //     console.log(response);
+          
+      //   }
+      // });
+    
+    })
   </script>
 </body>
 </html>
