@@ -26,8 +26,10 @@ $('#userBox').on('submit', '#userForm', function () {
         data: formData,
         contentType: false,
         processData: false,
-        success: function (data) {
-            console.log(data.msg)
+      success: function (data) {
+        alert('修改成功')
+        location.href='/index.html'
+          
         }
     })
     return false
