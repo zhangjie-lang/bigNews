@@ -26,5 +26,5 @@ $(function () {
             $('#focusAttend').html(html)
         }
     })
-    
+
 })
