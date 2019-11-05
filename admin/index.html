@@ -188,14 +188,11 @@
 
 
     //搜索按钮
-    $('.search_form').on('submit', function (e) {
-      e.preventDefault()
-      var keys = $(this).find('#keys').val()
-      // location.href='./search.html?key='+keys
-      location.href = './article_list.html?key=' + keys
-
-    })
-
+        $('.search_form').on('submit', function (e) {
+      e.preventDefault()
+      var keys = $(this).find('#keys').val();
+      $('#main_frame').attr('src', './article_list.html?key=' + keys);
+    })
   </script>
 
 

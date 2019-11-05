@@ -1,4 +1,7 @@
 $(function () {
+
+    $('#recipient-name').val('')
+    $('#recipient-slug').val('')
     // 获取文章类别数据
     $.ajax({
         type: 'get',
@@ -36,7 +39,7 @@ $(function () {
     //新增分类
     $('#addForm').on('submit', function () {
         var params = $(this).serialize();
-        console.log(params);      
+        console.log(params);
         if (params.substring(0, 2) === 'id') {
             // 实现文章类别编辑功能
             $.ajax({
@@ -45,17 +48,19 @@ $(function () {
                 data: params,
                 success: function (data) {
                     console.log(data);
-                    
+
                     location.reload()
                 }
             })
         }
+        // 添加分类功能
         else {
             $.ajax({
                 type: 'post',
                 url: 'http://47.111.184.55:8888/api/v1/admin/category/add',
                 data: params,
-                success: function (data) {
+                success: function () {
+
                     location.reload()
                 }
             })
