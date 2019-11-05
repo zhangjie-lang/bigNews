@@ -127,17 +127,7 @@
       </div>
 
       <div id="pagination" class="page"></div>
-      <script>
-        $(function () {
-          $("#pagination").pagination({
-            currentPage: 2,
-            totalPage: 8,
-            callback: function (current) {
-              alert('ok!');
-            }
-          });
-        });
-      </script>
+     
 
     </div>
     <div class="right_con setfl">
@@ -235,6 +225,17 @@
       })
       
     </script>
+     <script>
+        $(function () {
+          $("#pagination").pagination({
+            currentPage: 2,
+            totalPage: 8,
+            callback: function (current) {
+              alert('ok!');
+            }
+          });
+        });
+      </script>
 
 </body>
 

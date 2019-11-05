@@ -1,7 +1,4 @@
 $(function () {
-
-    $('#recipient-name').val('')
-    $('#recipient-slug').val('')
     // 获取文章类别数据
     $.ajax({
         type: 'get',
@@ -78,6 +75,9 @@ $(function () {
         console.log(111);
 
         var id = $(this).attr('data-id')
+        $('#recipient-id').attr('name','id')
+        $('#recipient-id').val(id)
+
         //让模态框显示
         $('#addModal').modal('show');
         //将获取到的id的值保存在隐藏域中   
