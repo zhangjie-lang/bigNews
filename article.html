@@ -29,22 +29,13 @@
       <div class="menu_collapse fl">
         <a href="javascript:;" class="level_one"><i class="fa fa-list-ul"></i>全部分类</a>
         <ul class="level_two">
-          <li class="up"></li>
-          <li><a href="#">最 新</a></li>
-          <li><a href="#">科 技</a></li>
-          <li><a href="#">股 市</a></li>
-          <li><a href="#">商 品</a></li>
-          <li><a href="#">外 汇</a></li>
-          <li><a href="#">公 司</a></li>
+
         </ul>
       </div>
       <ul class="left_menu fl">
-        <li><a href="#">最 新</a></li>
-        <li><a href="#">科 技</a></li>
-        <li><a href="#">股 市</a></li>
-        <li><a href="#">商 品</a></li>
-        <li><a href="#">外 汇</a></li>
-        <li><a href="#">公 司</a></li>
+        <div class="box">
+
+        </div>
       </ul>
       <ul class="right_menu fr">
         <li><a href="#">科技专题</a></li>
@@ -90,7 +81,7 @@
           <textarea placeholder="请发表您的评论" name="content" class="comment_input"></textarea>
         </div>
         <div class="form_group">
-          <input type="submit"  value="评 论" class="comment_sub"></div>
+          <input type="submit" value="评 论" class="comment_sub"></div>
       </form>
 
       <div class="comment_count">
@@ -98,32 +89,54 @@
       </div>
 
       <div class="comment_list_con" id="allComent">
-        
+        <div class="comment_detail_list">
+          <div class="person_pic fl">乔</div>
+          <div class="name_time fl"><b>虚竹</b><span>4小时前</span></div>
+          <div class="comment_text fl">
+            遏制茅台酒价格过快上涨，多渠道供给，就不一定要买，租茅台酒也可以的，租售同权。开发共有产权茅台酒，让老百姓喝得起茅台酒，饮者有其酒。
+          </div>
+        </div>
+        <div class="comment_detail_list">
+            <div class="person_pic fl">段</div>
+            <div class="name_time fl"><b>虚竹</b><span>4小时前</span></div>
+            <div class="comment_text fl">
+              遏制茅台酒价格过快上涨，多渠道供给，就不一定要买，租茅台酒也可以的，租售同权。开发共有产权茅台酒，让老百姓喝得起茅台酒，饮者有其酒。
+            </div>
+          </div>
+          <div class="comment_detail_list">
+            <div class="person_pic fl">虚</div>
+            <div class="name_time fl"><b>虚竹</b><span>4小时前</span></div>
+            <div class="comment_text fl">
+              遏制茅台酒价格过快上涨，多渠道供给，就不一定要买，租茅台酒也可以的，租售同权。开发共有产权茅台酒，让老百姓喝得起茅台酒，饮者有其酒。
+            </div>
+          </div>
+          <div class="comment_detail_list">
+            <div class="person_pic fl">王</div>
+            <div class="name_time fl"><b>虚竹</b><span>4小时前</span></div>
+            <div class="comment_text fl">
+              遏制茅台酒价格过快上涨，多渠道供给，就不一定要买，租茅台酒也可以的，租售同权。开发共有产权茅台酒，让老百姓喝得起茅台酒，饮者有其酒。
+            </div>
+          </div>
+
       </div>
     </div>
     <div class="right_con setfl">
       <div class="common_wrap">
         <h3><i class="fa fa-bar-chart"></i> 一周热门排行</h3>
-        <ul class="content_list">
-          <li><span class="first">1</span><a href="#">神奇的水滴摄影，泡泡中的世界泡泡中的世界</a></li>
-          <li><span class="second">2</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-          <li><span class="third">3</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-          <li><span>4</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-          <li><span>5</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-          <li><span>6</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-          <li><span>7</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
+        <ul class="content_list" id="newsBox">
+
         </ul>
       </div>
       <div class="common_wrap">
         <h3><i class="fa fa-commenting-o"></i> 最新评论</h3>
         <ul class="content_list comment_list" id="newComment">
-         
+
         </ul>
       </div>
       <div class="common_wrap">
         <h3><i class="fa fa-bullseye"></i> 焦点关注</h3>
         <ul class="content_list guanzhu_list" id="focusAttend">
-         
+
         </ul>
       </div>
     </div>
@@ -162,26 +175,35 @@
    </div>
  </script>
 
- <!-- 焦点关注模板 -->
- <script type="text/html" id="focusTpl">
+  <!-- 焦点关注模板 -->
+  <script type="text/html" id="focusTpl">
    {{each data}}
    <li><a href="#">{{$value.intro}}</a></li>
    {{/each}}
  </script>
 
- <!-- //评论列表模板 -->
- <!-- <script type="text/html" id="allComTpl">
-  {{each data}}
-    <div class="comment_detail_list">
-      <div class="person_pic fl">{{$value.}}</div>
-      <div class="name_time fl"><b>虚竹</b><span>4小时前</span></div>
-      <div class="comment_text fl">
-        遏制茅台酒价格过快上涨，多渠道供给，就不一定要买，租茅台酒也可以的，租售同权。开发共有产权茅台酒，让老百姓喝得起茅台酒，饮者有其酒。
-      </div>
-    </div>
+  <!-- 文章类型模板 -->
+  <script type="text/html" id="wenzhangTpl">
+    <li class="up"></li>
+    {{each data}}
+    <li><a href="{{$value.id}}">{{$value.name}}</a></li>
     {{/each}}
-</script> -->
+  </script>
 
+  <!-- 一周排行榜模板 -->
+  <script type="text/html" id="newsTpl">
+    {{each data}}
+    {{if $index==0}}
+    <li><span class="first">{{$index+1}}</span><a href="#">{{$value.title}}</a></li>
+    {{else if $index==1}}
+    <li><span class="second">{{$index+1}}</span><a href="#">{{$value.title}}</a></li>
+    {{else if $index==2}}
+    <li><span class="third">{{$index+1}}</span><a href="#">{{$value.title}}</a></li>
+    {{else if $index >3}}
+    <li><span class="">{{$index+1}}</span><a href="#">{{$value.title}}</a></li>
+    {{/if}}
+    {{/each}}
+  </script>
 </body>
 
 </html>

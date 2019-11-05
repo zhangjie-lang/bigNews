@@ -32,25 +32,16 @@
       <div class="menu_collapse fl">
         <a href="javascript:;" class="level_one"><i class="fa fa-list-ul"></i>全部分类</a>
         <ul class="level_two">
-          <li class="up"></li>
-          <li><a href="#">最 新</a></li>
-          <li><a href="#">科 技</a></li>
-          <li><a href="#">股 市</a></li>
-          <li><a href="#">商 品</a></li>
-          <li><a href="#">外 汇</a></li>
-          <li><a href="#">公 司</a></li>
+          
         </ul>
       </div>
       <ul class="left_menu fl">
-        <li><a href="#">最 新</a></li>
-        <li><a href="#">科 技</a></li>
-        <li><a href="#">股 市</a></li>
-        <li><a href="#">商 品</a></li>
-        <li><a href="#">外 汇</a></li>
-        <li><a href="#">公 司</a></li>
+          <div class="box">
+
+          </div>
       </ul>
       <ul class="right_menu fr">
-        <li><a href="#">科技专题</a></li>
+          <li><a href="#">科技专题</a></li>
         <li><a href="#">财经专题</a></li>
       </ul>
     </div>
@@ -220,6 +211,30 @@
         {{/if}}
         {{/each}}
   </script>
+
+    <!-- 文章类型模板 -->
+    <script type="text/html" id="wenzhangTpl">
+      <li class="up"></li>
+      {{each data}}
+      <li><a href="{{$value.id}}">{{$value.name}}</a></li>
+      {{/each}}
+    </script>
+
+  <script>
+      $(function () {
+        // 获取文章功能-------------------------------
+        $.ajax({
+          url: 'http://47.111.184.55:8888/api/v1/index/category',
+          type: 'get',
+          success: function (data) {
+              var html = template('wenzhangTpl', {data: data.data.slice(0, 6)});
+              $('.level_two').html(html);
+              $('.box').html(html);
+          }
+        });
+      })
+      
+    </script>
 
 </body>
 

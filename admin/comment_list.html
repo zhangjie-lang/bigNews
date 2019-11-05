@@ -30,17 +30,7 @@
           </tr>
         </thead>
         <tbody id="commentBox">
-          <tr>
-            <td>小周</td>
-            <td>这是一条测试评论，欢迎光临</td>
-            <td>《世界，你好》</td>
-            <td>2017-07-04 12:00:00</td>
-            <td>已批准</td>
-            <td class="text-center">
-              <a href="javascript:;" class="btn btn-warning btn-xs">拒绝</a>
-              <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-            </td>
-          </tr>
+
         </tbody>
       </table>
 
@@ -66,6 +56,23 @@
   <script src="js/jquery-1.12.4.min.js"></script>
   <script src="../js/template-web.js"></script>
   <script src="./js/jquery.twbsPagination.js"></script>
+  <script src="../js/comment_list.js"></script>
+  <script type="text/html" id="Tpl">
+    {{each data}}
+      <tr>
+        <td>{{$value.author}}</td>
+        <td>{{$value.content}}</td>
+        <td>{{$value.title}}</td>
+        <td>{{$value.date}} {{$value.time}}</td>
+        <td>{{$value.state}}</td>
+        <td class="text-center">
+          <a href="javascript:;" class="btn btn-warning btn-xs {{$value.state == '已拒绝' ? 'failed' : 'status'}}" >审核</a>
+          <a href="javascript:;" class="btn btn-danger btn-xs delete" data-id="{{$value.id}}">删除</a>
+        </td>
+      </tr>
+    {{/each}}
+
+  </script>
   <script>
     // 设置左侧菜单
     $('#release_btn').click(function () {
@@ -75,6 +82,77 @@
 
   <!-- 业务逻辑代码 -->
   <script>
+    $.ajax({
+    type: 'get',
+    url: 'http://47.111.184.55:8888/api/v1/admin/comment/search',
+    success: function (data) {
+      // console.log(data);
+      var html = template('Tpl', { data: data })
+      $('#commentBox').html(html)
+    }
+  })
+
+  // 删除评论
+  $('#commentBox').on('click', '.delete', function () {
+    var id = $(this).attr('data-id');
+    if (confirm('确认要删除吗?')) {
+      $.ajax({
+        type: 'post',
+        url: 'http://47.111.184.55:8888/api/v1/admin/comment/delete',
+        data: { id: id },
+        success: function (data) {
+          console.log(data);
+          location.reload()
+        }
+      })
+    }
+  })
+    // 审核按钮绑定事件 status 审核成功
+    $('#commentBox').on('click', '.status', function () {
+      // var status = $(this).attr('data-status')
+      var id = $(this).siblings('a').attr('data-id')
+
+      $.ajax({
+        url: 'http://47.111.184.55:8888/api/v1/admin/comment/pass',
+        type: 'post',
+        data: {
+          id: id
+        },
+        success: function (data) {
+          alert(data.msg)
+          location.reload()
+        }
+      })
+    })
+
+    // 审核失败
+    $('#commentBox').on('click', '.failed', function () {
+      // var status = $(this).attr('data-status')
+      var id = $(this).siblings('a').attr('data-id')
+      $.ajax({
+        url: 'http://47.111.184.55:8888/api/v1/admin/comment/reject',
+        type: 'post',
+        data: {
+          id: id
+        },
+        success: function (data) {
+          alert(data.msg)
+          location.reload()
+        }
+      })
+    })
+
+    // 页码数
+    function changePage(page) {
+      $.ajax({
+        url: 'http://47.111.184.55:8888/api/v1/admin/comment/search?perpage=3&page=' + page,
+        success: function (data) {
+          var html = template('Tpl', { data: data })
+          $('#commentBox').html(html)
+        }
+      })
+    }
+
   </script>
 </body>
 
