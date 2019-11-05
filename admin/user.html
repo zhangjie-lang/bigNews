@@ -15,10 +15,10 @@
 <body>
   <div class="container-fluid">
     <div class="common_title">
-      用户信息修改
+      <!-- 用户信息修改 -->
     </div>
-    <div class="container-fluid common_con">
-      <form class="form-horizontal article_form">
+    <div class="container-fluid common_con" id="fromFather">
+       <form class="form-horizontal article_form" >
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">用户名称：</label>
           <div class="col-sm-4">
@@ -41,7 +41,7 @@
         <div class="form-group">
           <label for="inputPassword3" class="col-sm-2 control-label">用户图标：</label>
           <div class="col-sm-10">
-            <img src="images/2.jpg" alt="" class="user_pic">
+            <img src="images/2.jpg" alt="" class="user_pic" id="imgUrl"
             <input style="display: none" name="user-Pic" type="file" id="exampleInputFile">
             <input type="hidden" name="user_pic">
             <!-- 给label标签的for属性赋值,值是input标签的id,那这样的话点击label就相当于点击了input -->
@@ -73,27 +73,75 @@
   <script src="../js/jquery-1.12.4.min.js"></script>
   <script src="../js/template-web.js"></script>
   <!-- 业务逻辑代码 -->
+  <!-- 一开始就显示的用户模板 -->
+  <script type="text/html" id="xianshiTpl">
+   <form class="form-horizontal article_form" id="xianshiForm">
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">用户名称：</label>
+          <div class="col-sm-4">
+            <input type="text" name="username" class="form-control " id="inputEmail3" value="{{username}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">昵称：</label>
+          <div class="col-sm-4">
+            <input type="text" name="nickname" class="form-control " id="inputEmail3" value="{{nickname}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">邮箱：</label>
+          <div class="col-sm-4">
+            <input type="text" name="email" class="form-control " id="inputEmail3" value="{{email}}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputPassword3" class="col-sm-2 control-label">用户图标：</label>
+          <div class="col-sm-10">
+            <img src="{{userPic}}" alt=""  id="imgUrl">
+            <input style="display: none" name="user-Pic" type="file" id="exampleInputFile">
+            <!-- <input type="hidden" name="user_pic"> -->
+            <!-- 给label标签的for属性赋值,值是input标签的id,那这样的话点击label就相当于点击了input -->
+            <br>
+            <label for="exampleInputFile">
+              <img src="./images/uploads_icon.jpg" style="height: 50px;" alt="">
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">密码：</label>
+          <div class="col-sm-4">
+            <input type="password" name="password" class="form-control " id="inputEmail3" value="{{password}}">
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success btn-edit">修改</button>
+          </div>
+        </div>
+    </form>
+  </script>
+
   <script>
     $(function () {
       // 获取用户详情
+      console.log(123);
+      
       $.ajax({
         url: 'http://47.111.184.55:8888/api/v1/admin/user/detail',
         type: 'get',
         success: function (response) {
-          if(response.msg == '发布成功') {
-          // console.log(1);
-          $('.username').val(response.username);
-          $('.nickname').val(response.nickname);
-          $('.email').val(response.email);
-          $('.user_pic').prop('src', response.userPic);
-          $('#user_pic').val(response.userPic);
-          $('.password').val(response.password);
-        }
+          console.log(1);
+          var html = template('xianshiTpl', response);
+            $('#fromFather').html(html);
         }
       });
 
       // 修改用户详情
-      $('#article_form').on('submit', function (e) {
+      $('#xianshiForm').on('submit', function (e) {
         e.preventDefault();
         var formDate = $(this).serialize();
         $.ajax({

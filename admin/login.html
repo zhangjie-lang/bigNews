@@ -91,6 +91,7 @@
           password: password
         },
         success: function (backData) {
+          console.log(backData)
           if (backData.code == 200) {
             // 保存token
             window.localStorage.setItem("token", backData.token)

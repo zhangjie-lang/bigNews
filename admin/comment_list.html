@@ -77,33 +77,33 @@
   <script>
     // 审核功能--------------------------
     $(function () {
-
+      
       $('#commentBox').on('.jujue', function () {
         var id = $(this).attr('data-id');
         $.ajax({
-        url: 'http://47.111.184.55:8888/api/v1/admin/comment/pass',
-        type: 'post',
-        data: id,
-        success: function (response) {
-         if(response.msg == '设置成功') {
-           location.reload()
-         }
-        }
-      });
+          url: 'http://47.111.184.55:8888/api/v1/admin/comment/pass',
+          type: 'post',
+          data: id,
+          success: function (response) {
+            if(response.msg == '设置成功') {
+              location.reload()
+            }
+          }
+        });
       })
     
       $('#commentBox').on('.jujue', function () {
         var id = $(this).attr('data-id');
         $.ajax({
-        url: 'http://47.111.184.55:8888/api/v1/admin/comment/reject',
-        type: 'post',
-        data: id,
-        success: function (response) {
-         if(response.msg == '设置成功') {
-           location.reload()
-         }
-        }
-      });
+          url: 'http://47.111.184.55:8888/api/v1/admin/comment/reject',
+          type: 'post',
+          data: id,
+          success: function (response) {
+            if(response.msg == '设置成功') {
+              location.reload()
+            }
+          }
+        });
       })
     })
 
