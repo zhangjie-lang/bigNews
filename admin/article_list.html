@@ -20,20 +20,15 @@
     <div class="container-fluid common_con">
       <div class="row opt_btns">
         <div class="col-xs-6">
-          <form class="form-inline">
-            <select id="selCategory" name="" class="form-control input-sm">
-              <option value="">所有分类</option>
-              <option>未分类</option>
-              <option>奇趣事</option>
-              <option>会生活</option>
-              <option>爱旅行</option>
+          <form class="form-inline" id="selecForm">
+            <select id="selCategory" name="type" class="form-control input-sm">
+              
             </select>
-            <select id="selStatus" name="" class="form-control input-sm">
-              <option value="">所有状态</option>
+            <select id="selStatus" name="state" class="form-control input-sm">
               <option value="草稿">草稿</option>
               <option value="已发布">已发布</option>
             </select>
-            <button id="btnSearch" class="btn btn-default btn-sm">筛选</button>
+            <button id="btnSearch" type="submit" class="btn btn-default btn-sm">筛选</button>
           </form>
         </div>
         <div class="col-xs-6">
@@ -95,6 +90,13 @@
       </td>
     </tr>
     {{/each}}
+  </script>
+
+  <!-- //所有分类模板 -->
+  <script type="text/html" id="allcaTpl">
+    {{each data}}
+      <option value="{{$value.id}}">{{$value.name}}</option>
+      {{/each}}
   </script>
   <script>
     // 设置左侧菜单

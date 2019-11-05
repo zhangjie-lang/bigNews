@@ -29,7 +29,6 @@ $(function () {
 
         var fd = new FormData($('form')[0]);
         fd.append('content', tinyMCE.activeEditor.getContent())
-        fd.append('state', '已发布')
         $.ajax({
             contentType: false,
             processData: false,
