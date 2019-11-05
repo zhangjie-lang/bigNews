@@ -80,9 +80,10 @@
         下一篇： <a href="#">世界第一个可以玩游戏的马桶、世界上第一个可以玩游戏的茶杯</a>
       </div>
 
-      <form action="" class="comment_form">
+      <form action="" class="comment_form" id="comment">
         <div class="form_group">
           <label>用户名：</label>
+<<<<<<< HEAD
           <input type="text" name="author" placeholder="请输入用户名" class="comment_name">
         </div>
         <div class="form_group">
@@ -91,6 +92,17 @@
         </div>
         <div class="form_group">
           <input type="submit"  value="评 论" class="comment_sub"></div>
+=======
+          <input type="text" placeholder="请输入用户名" class="comment_name" name="author">
+        </div>
+        <div class="form_group">
+          <label>评论内容：</label>
+          <textarea placeholder="请发表您的评论" class="comment_input" name='content'></textarea>
+        </div>
+        <div class="form_group">
+          <input type="submit" name="" value="评 论" class="comment_sub"></div>
+        <input type="hidden" name="articleId" id="hid">
+>>>>>>> feature/20191104-article_category.html
       </form>
 
       <div class="comment_count">
@@ -146,6 +158,7 @@
 
   <script src="./js/jquery-1.12.4.min.js"></script>
   <script src="./js/template-web.js"></script>
+<<<<<<< HEAD
   <script src="./js/template-web.js"></script>
   <script src="./admin/js/article.js"></script>
   <script src="./admin/js/index.js"></script>
@@ -182,6 +195,14 @@
     {{/each}}
 </script> -->
 
+=======
+  <script src="./js/article.js"></script>
+
+  <!-- 文章页面的 js 代码  -->
+  <script>
+    
+  </script>
+>>>>>>> feature/20191104-article_category.html
 </body>
 
 </html>
