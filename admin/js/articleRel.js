@@ -1,5 +1,4 @@
 $(function () {
-    console.log(111);
     
     //文件上传及时预览功能
     $('#exampleInputFile').on('change', function () {
