@@ -29,53 +29,25 @@
       <div class="menu_collapse fl">
         <a href="javascript:;" class="level_one"><i class="fa fa-list-ul"></i>全部分类</a>
         <ul class="level_two">
-          <li class="up"></li>
-          <li><a href="#">最 新</a></li>
-          <li><a href="#">科 技</a></li>
-          <li><a href="#">股 市</a></li>
-          <li><a href="#">商 品</a></li>
-          <li><a href="#">外 汇</a></li>
-          <li><a href="#">公 司</a></li>
+
         </ul>
       </div>
       <ul class="left_menu fl">
-        <li><a href="#">最 新</a></li>
-        <li><a href="#">科 技</a></li>
-        <li><a href="#">股 市</a></li>
-        <li><a href="#">商 品</a></li>
-        <li><a href="#">外 汇</a></li>
-        <li><a href="#">公 司</a></li>
+        <div class="box">
+
+        </div>
       </ul>
       <ul class="right_menu fr">
         <li><a href="#">科技专题</a></li>
         <li><a href="#">财经专题</a></li>
-      </ul>
+        </ulul>
     </div>
   </div>
 
   <div class="main_con clearfix" id="dad">
     <div class="left_con">
-      <ul class="focus_list">
-        <li class="first">
-          <a href="#"><img src="images/pic01.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic02.jpg" alt=""></a>
-          <p>图片说明图片说明图片说明图片说明图片说明图片说明图片说明图片说明图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic03.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic05.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
-        <li>
-          <a href="#"><img src="images/pic06.jpg" alt=""></a>
-          <p>图片说明</p>
-        </li>
+      <ul class="focus_list" id="imgBox">
+
       </ul>
 
       <div class="common_title">
@@ -88,20 +60,14 @@
     <div class="right_con">
       <div class="common_wrap">
         <h3><i class="fa fa-bar-chart"></i> 一周热门排行</h3>
-        <ul class="content_list hotList">
-          <li><span class="first">1</span><a href="#">神奇的水滴摄影，泡泡中的世界泡泡中的世界</a></li>
-          <li><span class="second">2</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-          <li><span class="third">3</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-          <li><span>4</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-          <li><span>5</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-          <li><span>6</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
-          <li><span>7</span><a href="#">神奇的水滴摄影，泡泡中的世界</a></li>
+        <ul class="content_list hotList" id="newsBox">
+
         </ul>
       </div>
       <div class="common_wrap">
         <h3><i class="fa fa-commenting-o"></i> 最新评论</h3>
         <ul class="content_list comment_list" id="newComment">
-          
+
         </ul>
       </div>
       <div class="common_wrap">
@@ -129,8 +95,8 @@
 
   <script src="./js/jquery-1.12.4.min.js"></script>
   <script src="./js/template-web.js"></script>
-<<<<<<< HEAD
-  <script src="/admin/js/index.js"></script>
+  <<<<<<< HEAD <script src="/admin/js/index.js">
+  </script>
 
   <!-- 最新评论模板 -->
   <script type="text/html" id="newComTpl">
@@ -149,7 +115,7 @@
     {{each data}}
     <li><a href="#">{{$value.intro}}</a></li>
     {{/each}}
-=======
+
   <script src="./js/index.js"></script>
   <script type="text/html" id="Tpl">
     {{each data}}
@@ -166,13 +132,54 @@
       </div>
       {{/each}}
   </script>
-
   <!-- index 代码 -->
-  <script>
-   
->>>>>>> feature/20191104-article_category.html
-  </script>
+  <!-- 文章类型模板 -->
+  <script type="text/html" id="wenzhangTpl">
+    <li class="up"></li>
+    {{each data}}
+    <li><a href="{{$value.id}}">{{$value.name}}</a></li>
+    {{/each}}
 
+  </script>
+  <!-- 一周排行榜 -->
+  <script type="text/html" id="newsTpl">
+    {{each data}}
+    {{if $index==0}}
+    <li><span class="first">{{$index+1}}</span><a href="#">{{$value.title}}</a></li>
+    {{else if $index==1}}
+      <li><span class="second">{{$index+1}}</span><a href="#">{{$value.title}}</a></li>
+      {{else if $index==2}}
+        <li><span class="third">{{$index+1}}</span><a href="#">{{$value.title}}</a></li>
+        {{else if $index >3}}
+          <li><span class="">{{$index+1}}</span><a href="#">{{$value.title}}</a></li>
+          {{/if}}
+          {{/each}}
+    </script>
+
+  <!-- //热点图 -->
+  <script type="text/html" id="imgTpl">
+      {{each data}}
+      {{if $index==0}}
+      <li class="first">
+        <a href="#"><img src="{{$value.cover}}" alt="" ></a>
+        <p>图片说明</p>
+      </li>
+      {{else}}
+       <li>
+         <a href="#"><img src="{{$value.cover}}" alt=""></a>
+         <p>图片说明</p>
+       </li>
+       {{/if}}
+      {{/each}}
+      </script>
+
+  <!-- 文章类型模板 -->
+  <script type="text/html" id="wenzhangTpl">
+    <li class="up"></li>
+    {{each data}}
+    <li><a href="{{$value.id}}">{{$value.name}}</a></li>
+    {{/each}}
+  </script>
 
 
 </body>

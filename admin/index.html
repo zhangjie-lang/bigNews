@@ -15,7 +15,7 @@
 <body>
   <div class="sider">
     <a href="#" class="logo"><img src="images/logo02.png" alt="logo"></a>
-    <div class="user_info">
+    <div class="user_info" id="indexBox">
       <img src="images/2.jpg" alt="person">
       <span>欢迎&nbsp;&nbsp;李思思</span>
       <b>管理员</b>
@@ -74,21 +74,21 @@
   </div>
 
   <div class="header_bar">
-    <!-- //搜索功能 -->
-    <form class="search_form" id="search_form">
-      <input type="text"　name="key" placeholder="请输入搜索内容" class="ipt">
+    <form class="search_form" id="sousuo">
+      <input type="text" placeholder="请输入搜索内容" id="keys">
       <i class="iconfont icon-search"></i>
     </form>
 
-    <div class="user_center_link">
+    <div class="user_center_link" id="selfBox">
       <a href="user.html" onclick="setMenu(3,0)" target="main_frame">个人中心</a>
       <img src="images/2.jpg" alt="person">
-      <a href="#"><i class="iconfont icon-tuichu"></i> 退出</a>
+      <a href="#"><i class="iconfont icon-tuichu" id="tuii"></i> 退出</a>
     </div>
   </div>
 
   <div class="main" id="main_body">
-    <iframe src="main_count.html" frameborder="0" id="main_frame" name="main_frame" frameborder="0" scrolling="auto"></iframe>
+    <iframe src="main_count.html" frameborder="0" id="main_frame" name="main_frame" frameborder="0"
+      scrolling="auto"></iframe>
   </div>
 
   <!-- 模态框 -->
@@ -96,7 +96,8 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">温馨提示!</h4>
         </div>
         <div class="modal-body">
@@ -114,8 +115,26 @@
   <script src="js/jquery-1.12.4.min.js"></script>
   <script src="./js/bootstrap/js/bootstrap.min.js"></script>
   <script src="./js/template-web.js"></script>
-  <!-- <script src="./js/index.js"></script> -->
-  
+  <script src="./js/index.js"></script>
+
+  <!-- 上传信息模板 -->
+  <script type="text/html" id="indexTpl">
+    <div class="user_info" id='indexBox'>
+      <img src="{{data.userPic.replace('http://172.16.19.30','http://47.111.184.55')}}" alt="person">
+      <span>欢迎&nbsp;&nbsp;{{data.nickname}}</span>
+      <b>管理员</b>
+    </div>
+  </script>
+
+
+      <!-- 个人中心模板 -->
+  <script type="text/html" id="selfTpl" >
+      <a href="user.html" onclick="setMenu(3,0)" target="main_frame">个人中心</a>
+      <img src="{{data.userPic.replace('http://172.16.19.30','http://47.111.184.55')}}" alt="person">
+      <a href="#"><i class="iconfont icon-tuichu" id="logout"></i> 退出</a>
+      </script>
+  </script>
+
   <script>
     var $level01 = $('.level01');
     var $subli = $('.level02 li')
@@ -166,6 +185,17 @@
         $('.level02').children().eq(n).addClass('active').siblings().removeClass('active');
       }
     }
+
+
+    //搜索按钮
+    $('.search_form').on('submit', function (e) {
+      e.preventDefault()
+      var keys = $(this).find('#keys').val()
+      // location.href='./search.html?key='+keys
+      location.href = './article_list.html?key=' + keys
+
+    })
+
   </script>
 
 
